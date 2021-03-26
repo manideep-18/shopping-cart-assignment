@@ -1,0 +1,78 @@
+.logoStyles{
+    height: 75px;
+    margin-right: 10%;
+}
+
+.headerContainer{
+    padding: 10px 0px;
+    display: flex;
+}
+
+.homeNavBar{
+    display: flex;
+    align-items: flex-end;
+
+    @media only screen and (min-width: 320px) and (max-width: 767px){
+        display: none;
+      }
+}
+
+.commonLinkStyles{
+    color: black;
+    text-decoration: none;
+}
+
+.linkRightSpaceStyles{
+@extend .commonLinkStyles;
+margin-right: 15px;
+}
+
+.signinNavBar{
+    display: flex;
+
+    @media only screen and (min-width: 320px) and (max-width: 767px){
+        display: none;
+      }
+}
+
+.textImageContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.cartImageContainer{
+    height: 28px;
+    width: 135px;
+    background-color: red;
+    padding: 5px;
+    display: flex;
+
+    @media only screen and (min-width: 320px) and (max-width: 767px){
+        height: 100%;
+        align-items: center;
+    }
+}
+
+.cartImageStyles{
+    height: 30px;
+}
+
+.itemsText{
+    margin-left: 5px;
+}
+
+.responsiveContainer{
+    width: 1120px;
+    margin: auto;
+    
+  @media only screen and (min-width: 768px) and (max-width: 1180px){
+    width: 92%;
+  }
+  }
+  
+  .mainContainer{
+    box-shadow:   0 100px 80px rgba(0, 0, 0, 0.12);
+  }

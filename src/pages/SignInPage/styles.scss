@@ -1,0 +1,28 @@
+.responsiveContainer{
+    width: 1120px;
+    margin: auto;
+    
+  @media only screen and (min-width: 768px) and (max-width: 1180px){
+    width: 92%;
+  }
+  }
+
+  .textFormContainer{
+      display: flex;
+  }
+
+  .fieldsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 50px;
+    margin-top: 35px;
+  }
+
+  .submitButtonStyles{
+      margin-top: 15px;
+  }
+
+  .errorTextStyles{
+      color: red;
+  }
