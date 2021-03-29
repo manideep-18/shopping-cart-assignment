@@ -1,11 +1,19 @@
+import { Provider } from "mobx-react";
 import React from "react";
 
 import "./App.scss";
 import Routes from "./Routes";
+import LikesStore from "./stores/LikesStore";
+
+const likesStore = new LikesStore();
 
 class App extends React.Component {
   render() {
-    return <Routes />;
+    return (
+      <Provider>
+        <Routes />
+      </Provider>
+    );
   }
 }
 
