@@ -17,10 +17,24 @@
     align-items: flex-start;
     margin-left: 50px;
     margin-top: 35px;
+
+    input{
+      border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    width: 230px;
+    border-bottom-color: green;
+  outline: none !important;
+  }
   }
 
   .submitButtonStyles{
-      margin-top: 15px;
+    margin-top: 40px;
+    width: 100%;
+    background-color: #D10157;
+    color: white;
+    padding: 10px;
+    border: none;
   }
 
   .errorTextStyles{
