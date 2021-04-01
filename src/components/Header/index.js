@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import logo from "../../static/images/logo.png";
 import cartImage from "../../static/images/cart.svg";
@@ -23,12 +23,28 @@ class Header extends React.Component {
             </nav>
             <div className="textImageContainer">
               <nav className="signinNavBar">
-                <Link className="linkRightSpaceStyles" to="/signin">
-                  Signin
-                </Link>
-                <Link className="commonLinkStyles" to="/register">
-                  Register
-                </Link>
+                {localStorage.getItem("authToken") ? (
+                  <a
+                    className="logoutLinkStyles"
+                    href="/"
+                    onClick={() => {
+                      localStorage.removeItem("authToken");
+                    }}
+                    role="button"
+                  >
+                    logout
+                  </a>
+                ) : (
+                  <>
+                    {" "}
+                    <Link className="linkRightSpaceStyles" to="/signin">
+                      Signin
+                    </Link>
+                    <Link className="commonLinkStyles" to="/register">
+                      Register
+                    </Link>
+                  </>
+                )}
               </nav>
               <div className="cartImageContainer">
                 <img
@@ -46,4 +62,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);
