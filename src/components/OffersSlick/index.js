@@ -26,8 +26,6 @@ class OffersSlick extends React.Component {
         <div>
           <Slider className="slickCustomStyles" {...settings}>
             {offersData.map(({ bannerImageUrl, bannerImageAlt, order }) => {
-              let url;
-
               return (
                 <div key={order}>
                   <img
