@@ -17,7 +17,7 @@ class Header extends React.Component {
               <Link className="linkRightSpaceStyles" to="/">
                 Home
               </Link>
-              <Link className="commonLinkStyles" to="/products">
+              <Link className="commonLinkStyles" to="/products/all">
                 Products
               </Link>
             </nav>
