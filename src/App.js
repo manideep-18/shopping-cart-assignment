@@ -4,13 +4,14 @@ import React from "react";
 import "./App.scss";
 import Routes from "./Routes";
 import LikesStore from "./stores/LikesStore";
+import ProductsStore from "./stores/ProductsStore";
 
-const likesStore = new LikesStore();
+const productsStore = new ProductsStore();
 
 class App extends React.Component {
   render() {
     return (
-      <Provider>
+      <Provider productsStore={productsStore}>
         <Routes />
       </Provider>
     );

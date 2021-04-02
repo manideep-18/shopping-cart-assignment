@@ -1,15 +1,19 @@
+import { inject, observer } from "mobx-react";
 import React from "react";
 
 import itemsData from "../../../server/products/index.get.json";
 
 import "./styles.scss";
 
+@inject("productsStore")
+@observer
 class CategoryItems extends React.Component {
   render() {
     let imageUrl = require.context("../../../static/images/products", true);
+
     return (
       <div className="itemsContainer">
-        {itemsData.map((eachItem) => (
+        {this.props.productsStore.filteredProductsData.map((eachItem) => (
           <div className="eachItemContainer" key={eachItem.id}>
             <h3>{eachItem.name}</h3>
             <img
