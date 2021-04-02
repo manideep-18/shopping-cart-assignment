@@ -1,6 +1,10 @@
 .logoStyles{
     height: 75px;
     margin-right: 10%;
+
+    @media only screen and (min-width: 320px) and (max-width: 767px){
+        height: 55px;
+    }    
 }
 
 .headerContainer{
@@ -51,6 +55,7 @@ margin-right: 15px;
     display: flex;
 
     @media only screen and (min-width: 320px) and (max-width: 767px){
+        width: 100px;
         height: 100%;
         align-items: center;
     }
@@ -67,6 +72,10 @@ margin-right: 15px;
 .responsiveContainer{
     width: 1120px;
     margin: auto;
+  
+    @media only screen and (min-width: 320px) and (max-width: 767px){
+    width:100%;
+    }
     
   @media only screen and (min-width: 768px) and (max-width: 1180px){
     width: 92%;
