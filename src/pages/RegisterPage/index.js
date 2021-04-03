@@ -34,7 +34,7 @@ class RegisterPage extends React.Component {
                 // same shape as initial values
                 localStorage.setItem("authToken", values["email"]);
                 this.props.history.push("/");
-                console.log(values);
+                // console.log(values);
               }}
             >
               {({ errors, touched }) => (

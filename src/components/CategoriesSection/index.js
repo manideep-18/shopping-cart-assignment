@@ -35,7 +35,6 @@ class CategoriesSection extends React.Component {
                         className="exploreButtonStyles"
                         onClick={(event) => {
                           event.preventDefault();
-                          console.log("mani");
                           this.props.productsStore.updateProductsData(id);
                           this.props.history.push(`/products/${key}`);
                         }}

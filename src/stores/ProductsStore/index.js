@@ -5,7 +5,7 @@ class ProductsStore {
   @observable id = "all";
 
   @action.bound updateProductsData(productId) {
-    console.log(productId, ">>");
+    // console.log(productId, ">>");
     this.id = productId;
   }
 
