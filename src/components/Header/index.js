@@ -5,7 +5,10 @@ import logo from "../../static/images/logo.png";
 import cartImage from "../../static/images/cart.svg";
 
 import "./styles.scss";
+import { inject, observer } from "mobx-react";
 
+@inject("productsStore")
+@observer
 class Header extends React.Component {
   render() {
     return (
@@ -17,9 +20,15 @@ class Header extends React.Component {
               <Link className="linkRightSpaceStyles" to="/">
                 Home
               </Link>
-              <Link className="commonLinkStyles" to="/products/all">
+              <button
+                className="customButtonStyles"
+                onClick={() => {
+                  this.props.history.push("/products/all");
+                  this.props.productsStore.updateProductsData("all");
+                }}
+              >
                 Products
-              </Link>
+              </button>
             </nav>
             <div className="textImageContainer">
               <nav className="signinNavBar">

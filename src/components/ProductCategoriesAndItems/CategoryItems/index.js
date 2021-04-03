@@ -2,12 +2,19 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 
 import itemsData from "../../../server/products/index.get.json";
+import { currentCategoryId } from "../../../utils/currentUrl";
 
 import "./styles.scss";
 
-@inject("productsStore")
 @observer
 class CategoryItems extends React.Component {
+  componentDidMount() {
+    const { productsStore } = this.props;
+
+    const resultCategoryId = currentCategoryId(window.location.href);
+    productsStore.updateProductsData(resultCategoryId);
+  }
+
   render() {
     let imageUrl = require.context("../../../static/images/products", true);
 

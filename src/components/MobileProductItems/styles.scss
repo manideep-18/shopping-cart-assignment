@@ -1,0 +1,59 @@
+.mobileProductItemsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+    @media screen and (min-width:768px){
+        display: none;
+    }
+}
+
+.customSelectStyles{
+    background-color: #BF2597;
+    border: none;
+    padding: 5px;
+    color: white;
+}
+
+.productsContainer{
+
+}
+
+.eachProductContainer{
+    width: 90%;
+    margin: auto;
+
+    h3{
+        margin-bottom: 10px;
+    }
+}
+
+.imageTextsContainer{
+display: flex;
+align-items: center;
+}
+
+.productImageStyles{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.textsContainerTwo{
+margin-left: 10px;
+
+p{
+    background-color: #F0F0F0;
+    font-size: 14px;
+}
+
+button{
+    padding: 5px;
+    border: none;
+    background-color: #C12857;
+    color: white;
+    cursor: pointer;
+}
+}

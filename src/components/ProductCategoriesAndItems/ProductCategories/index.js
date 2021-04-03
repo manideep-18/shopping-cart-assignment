@@ -4,7 +4,6 @@ import { Link, withRouter } from "react-router-dom";
 
 import "./styles.scss";
 
-@inject("productsStore")
 @observer
 class ProductCategories extends React.Component {
   render() {
