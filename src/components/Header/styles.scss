@@ -10,6 +10,7 @@
 .headerContainer{
     padding: 10px 0px;
     display: flex;
+    position: relative;
 }
 
 .homeNavBar{
@@ -50,9 +51,12 @@ margin-right: 15px;
 .cartImageContainer{
     height: 28px;
     width: 135px;
-    background-color: red;
+    background-color: #EEEEEE;
     padding: 5px;
     display: flex;
+    position: absolute;
+    bottom: 0px;
+    cursor: pointer;
 
     @media only screen and (min-width: 320px) and (max-width: 767px){
         width: 100px;
@@ -97,4 +101,8 @@ margin-right: 15px;
     font-size: 15px;
     cursor: pointer;
     outline: none;
+  }
+
+  .emptyCartModalStyles{
+    padding-top: 10%;
   }

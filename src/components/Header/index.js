@@ -6,10 +6,22 @@ import cartImage from "../../static/images/cart.svg";
 
 import "./styles.scss";
 import { inject, observer } from "mobx-react";
+import AriaModal from "react-aria-modal";
+import EmptyCartSection from "../EmptyCartSection";
 
 @inject("productsStore")
 @observer
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { modalStatus: false };
+  }
+
+  handleModalStatus = () => {
+    const { modalStatus } = this.state;
+    this.setState({ modalStatus: !modalStatus });
+  };
+
   render() {
     return (
       <div className="mainContainer">
@@ -55,7 +67,10 @@ class Header extends React.Component {
                   </>
                 )}
               </nav>
-              <div className="cartImageContainer">
+              <div
+                className="cartImageContainer"
+                onClick={this.handleModalStatus}
+              >
                 <img
                   className="cartImageStyles"
                   src={cartImage}
@@ -66,6 +81,14 @@ class Header extends React.Component {
             </div>
           </header>
         </div>
+        <AriaModal
+          mounted={this.state.modalStatus}
+          focusDialog
+          titleId="Accept Modal"
+          underlayClass="emptyCartModalStyles"
+        >
+          <EmptyCartSection handleModal={this.handleModalStatus} />
+        </AriaModal>
       </div>
     );
   }
