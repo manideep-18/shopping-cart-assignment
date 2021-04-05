@@ -6,6 +6,7 @@ import { currentCategoryId } from "../../../utils/currentUrl";
 
 import "./styles.scss";
 
+@inject("cartItemsStore")
 @observer
 class CategoryItems extends React.Component {
   componentDidMount() {
@@ -31,7 +32,14 @@ class CategoryItems extends React.Component {
             <p>{eachItem.description}</p>
             <div className="textButtonContainer">
               <span>MRP Rs.{eachItem.price}</span>
-              <button className="buyNowButtonStyles">Buy Now</button>
+              <button
+                className="buyNowButtonStyles"
+                onClick={() => {
+                  this.props.cartItemsStore.addItem(eachItem.id);
+                }}
+              >
+                Buy Now
+              </button>
             </div>
           </div>
         ))}

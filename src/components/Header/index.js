@@ -9,7 +9,7 @@ import { inject, observer } from "mobx-react";
 import AriaModal from "react-aria-modal";
 import EmptyCartSection from "../EmptyCartSection";
 
-@inject("productsStore")
+@inject("productsStore", "cartItemsStore")
 @observer
 class Header extends React.Component {
   constructor(props) {
@@ -23,6 +23,7 @@ class Header extends React.Component {
   };
 
   render() {
+    const { cartItemsStore } = this.props;
     return (
       <div className="mainContainer">
         <div className="responsiveContainer">
@@ -69,26 +70,36 @@ class Header extends React.Component {
               </nav>
               <div
                 className="cartImageContainer"
-                onClick={this.handleModalStatus}
+                onClick={
+                  cartItemsStore.cartItems.length === 0
+                    ? this.handleModalStatus
+                    : () => {
+                        this.props.history.push("/cart");
+                      }
+                }
               >
                 <img
                   className="cartImageStyles"
                   src={cartImage}
                   alt="cartImage"
                 />
-                <span className="itemsText">0 items</span>
+                <span className="itemsText">
+                  {cartItemsStore.cartItems.length} items
+                </span>
               </div>
             </div>
           </header>
         </div>
-        <AriaModal
-          mounted={this.state.modalStatus}
-          focusDialog
-          titleId="Accept Modal"
-          underlayClass="emptyCartModalStyles"
-        >
-          <EmptyCartSection handleModal={this.handleModalStatus} />
-        </AriaModal>
+        {cartItemsStore.cartItems.length === 0 && (
+          <AriaModal
+            mounted={this.state.modalStatus}
+            focusDialog
+            titleId="Accept Modal"
+            underlayClass="emptyCartModalStyles"
+          >
+            <EmptyCartSection handleModal={this.handleModalStatus} />
+          </AriaModal>
+        )}
       </div>
     );
   }
