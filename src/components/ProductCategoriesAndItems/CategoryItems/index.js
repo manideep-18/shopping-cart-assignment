@@ -24,22 +24,35 @@ class CategoryItems extends React.Component {
         {this.props.productsStore.filteredProductsData.map((eachItem) => (
           <div className="eachItemContainer" key={eachItem.id}>
             <h3>{eachItem.name}</h3>
-            <img
-              className="itemImageStyles"
-              src={imageUrl(eachItem.imageURL).default}
-              alt={eachItem.name}
-            />
-            <p>{eachItem.description}</p>
-            <div className="textButtonContainer">
-              <span>MRP Rs.{eachItem.price}</span>
-              <button
-                className="buyNowButtonStyles"
-                onClick={() => {
-                  this.props.cartItemsStore.addItem(eachItem.id);
-                }}
-              >
-                Buy Now
-              </button>
+            <div className="imgTextsContainer">
+              <img
+                className="itemImageStyles"
+                src={imageUrl(eachItem.imageURL).default}
+                alt={eachItem.name}
+              />
+              <div className="buttonTextsContainer">
+                <p>{eachItem.description}</p>
+                <div className="textButtonContainer">
+                  <span>MRP Rs.{eachItem.price}</span>
+                  <button
+                    className="buyNowButtonStyles"
+                    onClick={() => {
+                      this.props.cartItemsStore.addItem(eachItem.id);
+                    }}
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div className="textsContainerTwo">
+                  <button
+                    onClick={() => {
+                      this.props.cartItemsStore.addItem(eachItem.id);
+                    }}
+                  >
+                    Buy Now @ MRP Rs.{eachItem.price}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         ))}

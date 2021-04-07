@@ -2,6 +2,9 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
+import categoriesData from "../../../server/categories/index.get.json";
+import { ascendingOrderAlphabetical } from "../../../utils/SortingDataUtils";
+
 import "./styles.scss";
 
 @observer
@@ -11,59 +14,28 @@ class ProductCategories extends React.Component {
     return (
       <nav className="categoriesListStyles">
         <ul>
-          <li>
-            <button
-              onClick={() => {
-                history.push("/products/fruit-and-veg");
-                productsStore.updateProductsData("5b6899953d1a866534f516e2");
-              }}
-            >
-              {"Fruits & Vegetables"}
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => {
-                history.push("/products/bakery-cakes-dairy");
-                productsStore.updateProductsData("5b6899123d1a866534f516de");
-              }}
-            >
-              {"Bakery Cakes and Dairy"}
-            </button>
-          </li>
-
-          <li>
-            <button
-              onClick={() => {
-                history.push("/products/beverages");
-                productsStore.updateProductsData("5b675e5e5936635728f9fc30");
-              }}
-            >
-              {"Beverages"}
-            </button>
-          </li>
-
-          <li>
-            <button
-              onClick={() => {
-                history.push("/products/beauty-hygiene");
-                productsStore.updateProductsData("5b68994e3d1a866534f516df");
-              }}
-            >
-              {"Beauty and Hygiene"}
-            </button>
-          </li>
-
-          <li>
-            <button
-              onClick={() => {
-                history.push("/products/baby");
-                productsStore.updateProductsData("5b6899683d1a866534f516e0");
-              }}
-            >
-              {"Baby Care"}
-            </button>
-          </li>
+          {ascendingOrderAlphabetical(categoriesData, "order").map(
+            ({ id, key, order, name }) => {
+              if (order > 0)
+                return (
+                  <li key={id}>
+                    <a
+                      href={`products/${key}`}
+                      className={
+                        productsStore.id === id ? "activeButtonStyles" : null
+                      }
+                      onClick={(event) => {
+                        // event.preventDefault();
+                        // history.push(`/products/${key}`);
+                        productsStore.updateProductsData(id);
+                      }}
+                    >
+                      {name}
+                    </a>
+                  </li>
+                );
+            }
+          )}
         </ul>
       </nav>
     );
