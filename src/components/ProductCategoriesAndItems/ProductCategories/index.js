@@ -20,13 +20,13 @@ class ProductCategories extends React.Component {
                 return (
                   <li key={id}>
                     <a
-                      href={`products/${key}`}
+                      href="#"
                       className={
                         productsStore.id === id ? "activeButtonStyles" : null
                       }
                       onClick={(event) => {
-                        // event.preventDefault();
-                        // history.push(`/products/${key}`);
+                        event.preventDefault();
+                        history.push(`/products/${key}`);
                         productsStore.updateProductsData(id);
                       }}
                     >
