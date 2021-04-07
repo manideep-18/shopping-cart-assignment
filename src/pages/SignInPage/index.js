@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { withRouter } from "react-router";
 
 import "./styles.scss";
+import { validatePassword } from "../../utils/validationUtils";
 
 const SigninSchema = Yup.object().shape({
   password: Yup.string()
@@ -41,7 +42,11 @@ class SignInPage extends React.Component {
                     <span className="errorTextStyles">{errors.email}</span>
                   ) : null}
                   <label>password</label>
-                  <Field name="password" type="password" />
+                  <Field
+                    name="password"
+                    type="password"
+                    validate={validatePassword}
+                  />
                   {errors.password && touched.password ? (
                     <span className="errorTextStyles">{errors.password}</span>
                   ) : null}
