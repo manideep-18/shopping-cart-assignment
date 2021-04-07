@@ -29,12 +29,21 @@ class Header extends React.Component {
       <header className="headerContainer">
         <div className="responsiveContainer">
           <div className="mainContainer">
-            <img
-              className="logoStyles"
-              srcSet={`${mobileLogo} 767w,${logo} 1024w`}
-              src={logo}
-              alt="logo"
-            />
+            <a
+              href="#"
+              className="logoLinkStyles"
+              onClick={(event) => {
+                event.preventDefault();
+                history.push("/");
+              }}
+            >
+              <img
+                className="logoStyles"
+                srcSet={`${mobileLogo} 767w,${logo} 1024w`}
+                src={logo}
+                alt="logo"
+              />
+            </a>
             <nav className="homeNavBar">
               <Link className="linkRightSpaceStyles" to="/">
                 Home
