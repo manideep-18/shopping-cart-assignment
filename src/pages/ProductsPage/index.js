@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React from "react";
-import Header from "../../components/Header";
-import MobileProductItems from "../../components/MobileProductItems";
+
+import MobileProductsDropdown from "../../components/MobileProductsDropdown";
 import ProductCategoriesAndItems from "../../components/ProductCategoriesAndItems";
 
 @inject("productsStore")
@@ -11,8 +11,7 @@ class ProductsPage extends React.Component {
     const { productsStore } = this.props;
     return (
       <div>
-        <Header />
-        <MobileProductItems productsStore={productsStore} />
+        <MobileProductsDropdown productsStore={productsStore} />
         <ProductCategoriesAndItems productsStore={productsStore} />
       </div>
     );

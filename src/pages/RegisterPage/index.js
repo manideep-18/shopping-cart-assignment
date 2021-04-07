@@ -3,8 +3,6 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { withRouter } from "react-router";
 
-import Header from "../../components/Header";
-
 import "./styles.scss";
 
 const SigninSchema = Yup.object().shape({
@@ -20,7 +18,6 @@ class RegisterPage extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="responsiveContainer">
           <div className="textFormContainer">
             <h1>Register</h1>

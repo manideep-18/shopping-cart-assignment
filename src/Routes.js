@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./components/Header";
 import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
@@ -11,6 +12,7 @@ class Routes extends React.Component {
   render() {
     return (
       <Router>
+        <Header />
         <Switch>
           <Route path="/cart" component={CartPage} />
           <Route path="/products/:id" component={ProductsPage} />
