@@ -24,7 +24,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { cartItemsStore } = this.props;
+    const { cartItemsStore, productsStore, history } = this.props;
     return (
       <header className="headerContainer">
         <div className="responsiveContainer">
@@ -44,8 +44,8 @@ class Header extends React.Component {
                 className="customLinkStyles"
                 onClick={(event) => {
                   event.preventDefault();
-                  this.props.history.push("/products/all");
-                  this.props.productsStore.updateProductsData("all");
+                  history.push("/products/all");
+                  productsStore.updateProductsData("all");
                 }}
               >
                 Products
@@ -82,7 +82,7 @@ class Header extends React.Component {
                   cartItemsStore.cartItems.length === 0
                     ? this.handleModalStatus
                     : () => {
-                        this.props.history.push("/cart");
+                        history.push("/cart");
                       }
                 }
               >
@@ -105,7 +105,10 @@ class Header extends React.Component {
             titleId="Accept Modal"
             underlayClass="emptyCartModalStyles"
           >
-            <EmptyCartSection handleModal={this.handleModalStatus} />
+            <EmptyCartSection
+              productsStore={productsStore}
+              handleModal={this.handleModalStatus}
+            />
           </AriaModal>
         )}
       </header>
