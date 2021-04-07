@@ -8,7 +8,7 @@ import cartImage from "../../static/images/cart.svg";
 import "./styles.scss";
 import { inject, observer } from "mobx-react";
 import AriaModal from "react-aria-modal";
-import EmptyCartSection from "../EmptyCartSection";
+import EmptyCartSection from "../../components/EmptyCartSection";
 
 @inject("productsStore", "cartItemsStore")
 @observer
