@@ -58,24 +58,6 @@ class MobileProductItems extends React.Component {
           </option>
           <option value="5b6899683d1a866534f516e0">{"Baby Care"}</option>
         </select>
-        <div className="productsContainer">
-          {productsStore.filteredProductsData.map((eachProduct) => (
-            <div className="eachProductContainer" key={eachProduct.id}>
-              <h3>{eachProduct.name}</h3>
-              <div className="imageTextsContainer">
-                <img
-                  className="productImageStyles"
-                  src={imageUrl(eachProduct.imageURL).default}
-                  alt={eachProduct.name}
-                />
-                <div className="textsContainerTwo">
-                  <p>{eachProduct.description}</p>
-                  <button>Buy Now @ MRP Rs.{eachProduct.price}</button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     );
   }
