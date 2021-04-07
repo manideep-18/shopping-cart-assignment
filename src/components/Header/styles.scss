@@ -7,7 +7,7 @@
     }    
 }
 
-.headerContainer{
+.mainContainer{
     padding: 10px 0px;
     display: flex;
     position: relative;
@@ -49,14 +49,16 @@ margin-right: 15px;
 }
 
 .cartImageContainer{
-    height: 28px;
+    height: 45px;
     width: 135px;
     background-color: #EEEEEE;
     padding: 5px;
     display: flex;
+    align-items: center;
     position: absolute;
     bottom: 0px;
     cursor: pointer;
+    border: none;
 
     @media only screen and (min-width: 320px) and (max-width: 767px){
         width: 100px;
@@ -86,7 +88,7 @@ margin-right: 15px;
   }
   }
   
-  .mainContainer{
+  .headerContainer{
     box-shadow: rgb(31 45 61 / 15%) 0px 1px 2px 0px;
 
   }
@@ -95,12 +97,13 @@ margin-right: 15px;
       text-decoration: none;
   }
 
-  .customButtonStyles{
+  .customLinkStyles{
     border: none;
     background-color: transparent;
     font-size: 15px;
     cursor: pointer;
-    outline: none;
+    text-decoration: none;
+    color: black;
   }
 
   .emptyCartModalStyles{
