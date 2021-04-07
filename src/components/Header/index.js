@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 
-import logo from "../../static/images/logo.png";
+import mobileLogo from "../../static/images/logo.png";
+import logo from "../../static/images/logo_2x.png";
 import cartImage from "../../static/images/cart.svg";
 
 import "./styles.scss";
@@ -25,23 +26,30 @@ class Header extends React.Component {
   render() {
     const { cartItemsStore } = this.props;
     return (
-      <div className="mainContainer">
+      <header className="headerContainer">
         <div className="responsiveContainer">
-          <header className="headerContainer">
-            <img className="logoStyles" src={logo} alt="logo" />
+          <div className="mainContainer">
+            <img
+              className="logoStyles"
+              srcSet={`${mobileLogo} 767w,${logo} 1024w`}
+              src={logo}
+              alt="logo"
+            />
             <nav className="homeNavBar">
               <Link className="linkRightSpaceStyles" to="/">
                 Home
               </Link>
-              <button
-                className="customButtonStyles"
-                onClick={() => {
+              <a
+                href="#"
+                className="customLinkStyles"
+                onClick={(event) => {
+                  event.preventDefault();
                   this.props.history.push("/products/all");
                   this.props.productsStore.updateProductsData("all");
                 }}
               >
                 Products
-              </button>
+              </a>
             </nav>
             <div className="textImageContainer">
               <nav className="signinNavBar">
@@ -68,7 +76,7 @@ class Header extends React.Component {
                   </>
                 )}
               </nav>
-              <div
+              <button
                 className="cartImageContainer"
                 onClick={
                   cartItemsStore.cartItems.length === 0
@@ -86,9 +94,9 @@ class Header extends React.Component {
                 <span className="itemsText">
                   {cartItemsStore.cartItems.length} items
                 </span>
-              </div>
+              </button>
             </div>
-          </header>
+          </div>
         </div>
         {cartItemsStore.cartItems.length === 0 && (
           <AriaModal
@@ -100,7 +108,7 @@ class Header extends React.Component {
             <EmptyCartSection handleModal={this.handleModalStatus} />
           </AriaModal>
         )}
-      </div>
+      </header>
     );
   }
 }
