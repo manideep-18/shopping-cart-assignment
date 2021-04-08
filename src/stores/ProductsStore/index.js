@@ -5,8 +5,9 @@ class ProductsStore {
   @observable id = "all";
 
   @action.bound updateProductsData(productId) {
-    // console.log(productId, ">>");
-    this.id = productId;
+    // console.log(productId, ">>", this.id);
+    if (this.id === productId) this.id = "all";
+    else this.id = productId;
   }
 
   @computed get filteredProductsData() {

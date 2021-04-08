@@ -16,6 +16,7 @@ class ProductCategories extends React.Component {
         <ul>
           {ascendingOrderAlphabetical(categoriesData, "order").map(
             ({ id, key, order, name }) => {
+              // console.log(productsStore.id, "??", id);
               if (order > 0)
                 return (
                   <li key={id}>
@@ -26,7 +27,11 @@ class ProductCategories extends React.Component {
                       }
                       onClick={(event) => {
                         event.preventDefault();
-                        history.push(`/products/${key}`);
+                        if (productsStore.id === id) {
+                          history.push(`/products/all`);
+                        } else {
+                          history.push(`/products/${key}`);
+                        }
                         productsStore.updateProductsData(id);
                       }}
                     >
