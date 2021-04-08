@@ -29,10 +29,11 @@ class ProductCategories extends React.Component {
                         event.preventDefault();
                         if (productsStore.id === id) {
                           history.push(`/products/all`);
+                          productsStore.updateProductsData("all");
                         } else {
                           history.push(`/products/${key}`);
+                          productsStore.updateProductsData(id);
                         }
-                        productsStore.updateProductsData(id);
                       }}
                     >
                       {name}

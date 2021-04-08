@@ -6,7 +6,7 @@ class ProductsStore {
 
   @action.bound updateProductsData(productId) {
     // console.log(productId, ">>", this.id);
-    if (this.id === productId) this.id = "all";
+    if (productId === "all") this.id = "all";
     else this.id = productId;
   }
 
@@ -15,7 +15,7 @@ class ProductsStore {
     const resultData = productsData.filter(
       (eachProduct) => eachProduct.category === this.id
     );
-
+    // console.log(resultData, "???");
     return resultData;
   }
 }
