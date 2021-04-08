@@ -4,4 +4,8 @@
 
 .slickCustomStyles{
     margin-top: 10px;
+
+    .slick-prev, .slick-next {
+        background-color: black;
+    }
 }
