@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React from "react";
 import { withRouter } from "react-router";
-import { currentCategoryPath } from "../../utils/currentUrl";
+import { currentCategoryId, currentCategoryPath } from "../../utils/currentUrl";
 
 import "./styles.scss";
 
@@ -23,14 +23,17 @@ class MobileProductItems extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.selectValue !== this.state.selectValue) {
+    if (prevState.selectValue === this.state.selectValue) {
+      const resultCategoryId = currentCategoryId(window.location.href);
       // console.log(prevState.selectValue, "??");
-      this.setState({ selectValue: this.props.productsStore.id });
+      this.setState({ selectValue: resultCategoryId });
     }
   }
 
   componentDidMount() {
-    this.setState({ selectValue: this.props.productsStore.id });
+    const resultCategoryId = currentCategoryId(window.location.href);
+    // console.log(prevState.selectValue, "??");
+    this.setState({ selectValue: resultCategoryId });
   }
 
   render() {
