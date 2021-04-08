@@ -58,6 +58,13 @@ class CartItemsLandingSection extends React.Component {
                 );
             })}
           </div>
+          <div className="bottomTextButtonsStyles">
+            <span>Promo code can be applied on payment page</span>
+            <button>
+              <span>Proceed to Checkout</span>
+              <span>Rs.{cartItemsStore.totalCartItemsPrice}</span>
+            </button>
+          </div>
         </div>
       </div>
     );

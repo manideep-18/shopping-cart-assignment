@@ -1,4 +1,4 @@
-import { action, observable } from "mobx";
+import { action, observable, computed } from "mobx";
 
 import productsData from "../../server/products/index.get.json";
 import CartItemModal from "../Modal/CartItemModal";
@@ -44,6 +44,15 @@ class CartItemsStore {
       this.cartItems = this.cartItems.filter(
         (eachItem) => eachItem.itemId !== id
       );
+  }
+
+  @computed get totalCartItemsPrice() {
+    let sum = 0;
+    this.cartItems.forEach(
+      (eachItem) => (sum = sum + eachItem.itemPrice * eachItem.units)
+    );
+
+    return sum;
   }
 }
 

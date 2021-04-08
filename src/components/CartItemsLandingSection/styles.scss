@@ -2,6 +2,7 @@
     background-color: #EEEEEE;
     min-height: calc(100vh - 95px);
     padding-bottom: 20px;
+    position: relative;
 }
 
 .headingContainer{
@@ -64,4 +65,39 @@ span{
 
 .unitsContainer{
 
+}
+
+.bottomTextButtonsStyles{
+display: flex;
+flex-direction: column;
+background-color: white;
+    padding: 20px 0px;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+    margin: auto;
+    width: 1120px;
+
+    @media screen and (min-width:320px) and (max-width:767px) {
+        
+    width: 100%;
+    
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1180px){
+    width:92%;
+    }
+
+    button{
+        width: 92%;
+    margin: auto;
+    margin-top: 8px;
+    background-color: #BF2957;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    }
 }
