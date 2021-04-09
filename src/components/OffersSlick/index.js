@@ -7,16 +7,43 @@ import offersData from "../../server/banners/index.get.json";
 
 import "./styles.scss";
 
+function CustomNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div className="customSlickNextStyles" onClick={onClick}>
+      <span>NEXT</span>
+    </div>
+  );
+}
+
+function CustomPrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div className="customSlickPrevStyles" onClick={onClick}>
+      <span>PREV</span>
+    </div>
+  );
+}
+
 class OffersSlick extends React.Component {
   render() {
     const settings = {
       dots: true,
       infinite: true,
-      arrows: true,
       speed: 500,
+      nextArrow: <CustomNextArrow />,
+      prevArrow: <CustomPrevArrow />,
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: 500,
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            arrows: false,
+          },
+        },
+      ],
     };
 
     let imageUrl = require.context("../../static/images/offers", true);
