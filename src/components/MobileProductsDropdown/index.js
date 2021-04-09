@@ -9,7 +9,7 @@ import "./styles.scss";
 class MobileProductItems extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { selectValue: "5b6899953d1a866534f516e2" };
+    this.state = { selectValue: "" };
   }
 
   handleChange = (event) => {
@@ -23,7 +23,8 @@ class MobileProductItems extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.selectValue === this.state.selectValue) {
+    const { productsStore } = this.props;
+    if (prevState.selectValue !== productsStore.id) {
       const resultCategoryId = currentCategoryId(window.location.href);
       // console.log(prevState.selectValue, "??");
       this.setState({ selectValue: resultCategoryId });
