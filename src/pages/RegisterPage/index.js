@@ -7,7 +7,8 @@ import "./styles.scss";
 import { validatePassword } from "../../utils/validationUtils";
 
 const SigninSchema = Yup.object().shape({
-  username: Yup.string().required("Required"),
+  firstname: Yup.string().required("Required"),
+  lastname: Yup.string().required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string().required("Required"),
   confirmPassword: Yup.string().required("Required"),
@@ -27,7 +28,8 @@ class RegisterPage extends React.Component {
             <h1>Register</h1>
             <Formik
               initialValues={{
-                username: "",
+                firstname: "",
+                lastname: "",
                 email: "",
                 password: "",
                 confirmPassword: "",
@@ -42,17 +44,22 @@ class RegisterPage extends React.Component {
             >
               {({ errors, touched, values }) => (
                 <Form className="fieldsContainer">
-                  <label>username</label>
-                  <Field name="username" type="text" />
-                  {errors.username && touched.username ? (
-                    <span className="errorTextStyles">{errors.username}</span>
+                  <label>First Name</label>
+                  <Field name="firstname" type="text" />
+                  {errors.firstname && touched.firstname ? (
+                    <span className="errorTextStyles">{errors.firstname}</span>
                   ) : null}
-                  <label>email</label>
+                  <label>Last Name</label>
+                  <Field name="lastname" type="text" />
+                  {errors.lastname && touched.lastname ? (
+                    <span className="errorTextStyles">{errors.lastname}</span>
+                  ) : null}
+                  <label>Email</label>
                   <Field name="email" type="email" />
                   {errors.email && touched.email ? (
                     <span className="errorTextStyles">{errors.email}</span>
                   ) : null}
-                  <label>password</label>
+                  <label>Password</label>
                   <Field
                     name="password"
                     type="password"
@@ -61,7 +68,7 @@ class RegisterPage extends React.Component {
                   {errors.password && touched.password ? (
                     <span className="errorTextStyles">{errors.password}</span>
                   ) : null}
-                  <label>confirm password</label>
+                  <label>Confirm Password</label>
                   <Field
                     name="confirmPassword"
                     type="password"
