@@ -5,6 +5,7 @@ import { currentCategoryId, currentCategoryPath } from "../../utils/currentUrl";
 
 import "./styles.scss";
 
+@inject("productsStore")
 @observer
 class MobileProductItems extends React.Component {
   constructor(props) {
@@ -15,33 +16,51 @@ class MobileProductItems extends React.Component {
   handleChange = (event) => {
     // console.log(event.target.value);
     const { productsStore } = this.props;
+    const { categoriesData } = productsStore;
+
     this.setState({ selectValue: event.target.value });
     productsStore.updateProductsData(event.target.value);
     this.props.history.push(
-      `/products/${currentCategoryPath(event.target.value)}`
+      `/products/${currentCategoryPath(categoriesData, event.target.value)}`
     );
   };
 
   componentDidUpdate(prevProps, prevState) {
     const { productsStore } = this.props;
-    if (prevState.selectValue !== productsStore.id) {
-      const resultCategoryId = currentCategoryId(window.location.href);
+    const { categoriesData } = productsStore;
+
+    // productsStore.categoriesDataApi();
+
+    if (
+      prevState.selectValue !== productsStore.id &&
+      categoriesData.length > 0
+    ) {
+      const resultCategoryId = currentCategoryId(
+        categoriesData,
+        window.location.href
+      );
       // console.log(prevState.selectValue, "??");
       this.setState({ selectValue: resultCategoryId });
     }
   }
 
   componentDidMount() {
-    const resultCategoryId = currentCategoryId(window.location.href);
+    const { productsStore } = this.props;
+    // const { categoriesData } = productsStore;
+
+    productsStore.categoriesDataApi();
+
+    const resultCategoryId = currentCategoryId(
+      productsStore.categoriesData,
+      window.location.href
+    );
     // console.log(prevState.selectValue, "??");
     this.setState({ selectValue: resultCategoryId });
   }
 
   render() {
     const { productsStore } = this.props;
-
-    let imageUrl = require.context("../../../static/images/products", true);
-
+    console.log(productsStore.id, "???");
     return (
       <div className="mobileProductItemsContainer">
         <select

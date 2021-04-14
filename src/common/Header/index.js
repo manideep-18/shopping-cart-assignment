@@ -101,7 +101,7 @@ class Header extends React.Component {
                   alt="cartImage"
                 />
                 <span className="itemsText">
-                  {cartItemsStore.cartItems.length} items
+                  {cartItemsStore.totalCartItems} items
                 </span>
               </button>
             </div>

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
+    "test": "node scripts/test.js --no-cache --env=jsdom",
     "start:db": "canned -p 5000 ./server"
   },
   "author": "",

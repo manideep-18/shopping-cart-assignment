@@ -1,15 +1,14 @@
-import categoriesData from "../server/categories/index.get.json";
-
-export const currentCategoryId = (url) => {
+export const currentCategoryId = (categoriesData, url) => {
+  // console.log(categoriesData, "PPP");
   if (url.includes("all")) return "all";
   const resultCategory = categoriesData.filter((eachCategory) => {
     return url.includes(eachCategory.key);
   });
 
-  return resultCategory[0].id;
+  return resultCategory.length > 0 ? resultCategory[0].id : null;
 };
 
-export const currentCategoryPath = (id) => {
+export const currentCategoryPath = (categoriesData, id) => {
   if (id === "all") return "all";
   else {
     const resultCategory = categoriesData.filter((eachCategory) => {

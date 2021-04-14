@@ -9,11 +9,48 @@ import "./styles.scss";
 @inject("cartItemsStore")
 @observer
 class CategoryItems extends React.Component {
+  onFailureItemAddToCart = () => {
+    const { cartItemsStore } = this.props;
+    const { onAddItemtoCartApiError } = cartItemsStore;
+
+    alert(onAddItemtoCartApiError);
+  };
+
+  onSuccessItemAddToCart = () => {
+    const { cartItemsStore } = this.props;
+    const { onAddItemToCartSuccessMsg } = cartItemsStore;
+
+    alert(onAddItemToCartSuccessMsg);
+  };
+
+  handleBuyNowButtonClick = (id) => {
+    const { cartItemsStore } = this.props;
+
+    cartItemsStore.onAddItemtoCartApi(
+      id,
+      this.onSuccessItemAddToCart,
+      this.onFailureItemAddToCart
+    );
+  };
+
+  componentDidUpdate() {
+    const { productsStore } = this.props;
+
+    if (productsStore.categoriesData.length > 0) {
+      const resultCategoryId = currentCategoryId(
+        productsStore.categoriesData,
+        window.location.href
+      );
+      // console.log(resultCategoryId, "??");
+      productsStore.updateProductsData(resultCategoryId);
+    }
+  }
+
   componentDidMount() {
     const { productsStore } = this.props;
 
-    const resultCategoryId = currentCategoryId(window.location.href);
-    productsStore.updateProductsData(resultCategoryId);
+    productsStore.categoriesDataApi();
+    productsStore.productsDataApi();
   }
 
   render() {
@@ -37,7 +74,7 @@ class CategoryItems extends React.Component {
                   <button
                     className="buyNowButtonStyles"
                     onClick={() => {
-                      this.props.cartItemsStore.addItem(eachItem.id);
+                      this.handleBuyNowButtonClick(eachItem.id);
                     }}
                   >
                     Buy Now
@@ -46,7 +83,7 @@ class CategoryItems extends React.Component {
                 <div className="textsContainerTwo">
                   <button
                     onClick={() => {
-                      this.props.cartItemsStore.addItem(eachItem.id);
+                      this.handleBuyNowButtonClick(eachItem.id);
                     }}
                   >
                     Buy Now @ MRP Rs.{eachItem.price}

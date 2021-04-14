@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import offersData from "../../server/banners/index.get.json";
 
 import "./styles.scss";
+import { inject, observer } from "mobx-react";
+import LoadingWrapper from "../../common/LoadingWrapper";
 
 function CustomNextArrow(props) {
   const { className, style, onClick } = props;
@@ -25,7 +27,15 @@ function CustomPrevArrow(props) {
   );
 }
 
+@inject("productsStore")
+@observer
 class OffersSlick extends React.Component {
+  componentDidMount() {
+    const { productsStore } = this.props;
+
+    productsStore.offersDataApi();
+  }
+
   render() {
     const settings = {
       dots: true,
@@ -48,23 +58,33 @@ class OffersSlick extends React.Component {
 
     let imageUrl = require.context("../../static/images/offers", true);
 
+    const { productsStore } = this.props;
+    const { offersDataApiStatus, offersData, offersDataApi } = productsStore;
+
     return (
       <div className="responsiveContainer">
-        <div>
-          <Slider className="slickCustomStyles" {...settings}>
-            {offersData.map(({ bannerImageUrl, bannerImageAlt, order }) => {
-              return (
-                <div key={order}>
-                  <img
-                    className="offerStyles"
-                    src={imageUrl(bannerImageUrl).default}
-                    alt={bannerImageAlt}
-                  />
-                </div>
-              );
-            })}
-          </Slider>
-        </div>
+        <LoadingWrapper
+          apiStatus={offersDataApiStatus}
+          onRetryClick={() => {
+            offersDataApi();
+          }}
+        >
+          <div>
+            <Slider className="slickCustomStyles" {...settings}>
+              {offersData.map(({ bannerImageUrl, bannerImageAlt, order }) => {
+                return (
+                  <div key={order}>
+                    <img
+                      className="offerStyles"
+                      src={imageUrl(bannerImageUrl).default}
+                      alt={bannerImageAlt}
+                    />
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
+        </LoadingWrapper>
       </div>
     );
   }

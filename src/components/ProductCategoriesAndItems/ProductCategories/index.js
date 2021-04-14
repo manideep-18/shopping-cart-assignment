@@ -2,15 +2,22 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import categoriesData from "../../../server/categories/index.get.json";
+// import categoriesData from "../../../server/categories/index.get.json";
 import { ascendingOrderAlphabetical } from "../../../utils/SortingDataUtils";
 
 import "./styles.scss";
 
 @observer
 class ProductCategories extends React.Component {
+  componentDidMount() {
+    const { productsStore } = this.props;
+
+    productsStore.categoriesDataApi();
+  }
+
   render() {
     const { history, productsStore } = this.props;
+    const { categoriesData } = productsStore;
     return (
       <nav className="categoriesListStyles">
         <ul>

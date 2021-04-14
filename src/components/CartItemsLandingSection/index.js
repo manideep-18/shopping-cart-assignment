@@ -16,7 +16,7 @@ class CartItemsLandingSection extends React.Component {
         <div className="responsiveContainer">
           <div className="headingContainer">
             <h3>
-              My Cart<span>({cartItemsStore.cartItems.length} items)</span>
+              My Cart<span>({cartItemsStore.totalCartItems} items)</span>
             </h3>
           </div>
           <div className="cartItemsContainer">
