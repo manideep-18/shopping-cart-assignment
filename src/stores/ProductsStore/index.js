@@ -77,7 +77,7 @@ class ProductsStore {
         this.productsData = data;
       })
       .catch((err) => {
-        this.productsDataApiError = apiStatus.error;
+        this.productsDataApiStatus = apiStatus.error;
       });
   }
 }

@@ -1,8 +1,8 @@
 import { inject, observer } from "mobx-react";
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import LoadingWrapper from "../../../common/LoadingWrapper";
 
-// import categoriesData from "../../../server/categories/index.get.json";
 import { ascendingOrderAlphabetical } from "../../../utils/SortingDataUtils";
 
 import "./styles.scss";
@@ -17,40 +17,47 @@ class ProductCategories extends React.Component {
 
   render() {
     const { history, productsStore } = this.props;
-    const { categoriesData } = productsStore;
+    const { categoriesData, categoriesDataApiStatus } = productsStore;
     return (
-      <nav className="categoriesListStyles">
-        <ul>
-          {ascendingOrderAlphabetical(categoriesData, "order").map(
-            ({ id, key, order, name }) => {
-              // console.log(productsStore.id, "??", id);
-              if (order > 0)
-                return (
-                  <li key={id}>
-                    <a
-                      href="#"
-                      className={
-                        productsStore.id === id ? "activeButtonStyles" : null
-                      }
-                      onClick={(event) => {
-                        event.preventDefault();
-                        if (productsStore.id === id) {
-                          history.push(`/products/all`);
-                          productsStore.updateProductsData("all");
-                        } else {
-                          history.push(`/products/${key}`);
-                          productsStore.updateProductsData(id);
+      <LoadingWrapper
+        apiStatus={categoriesDataApiStatus}
+        onRetryClick={() => {
+          productsStore.categoriesDataApi();
+        }}
+      >
+        <nav className="categoriesListStyles">
+          <ul>
+            {ascendingOrderAlphabetical(categoriesData, "order").map(
+              ({ id, key, order, name }) => {
+                // console.log(productsStore.id, "??", id);
+                if (order > 0)
+                  return (
+                    <li key={id}>
+                      <a
+                        href="#"
+                        className={
+                          productsStore.id === id ? "activeButtonStyles" : null
                         }
-                      }}
-                    >
-                      {name}
-                    </a>
-                  </li>
-                );
-            }
-          )}
-        </ul>
-      </nav>
+                        onClick={(event) => {
+                          event.preventDefault();
+                          if (productsStore.id === id) {
+                            history.push(`/products/all`);
+                            productsStore.updateProductsData("all");
+                          } else {
+                            history.push(`/products/${key}`);
+                            productsStore.updateProductsData(id);
+                          }
+                        }}
+                      >
+                        {name}
+                      </a>
+                    </li>
+                  );
+              }
+            )}
+          </ul>
+        </nav>
+      </LoadingWrapper>
     );
   }
 }
