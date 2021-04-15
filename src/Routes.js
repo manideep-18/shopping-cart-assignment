@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Footer from "./common/Footer";
+
 import Header from "./common/Header";
 import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
@@ -21,7 +21,6 @@ class Routes extends React.Component {
           <Route path="/signin" component={SignInPage} />
           <PrivateRoute path="/" component={HomePage} />
         </Switch>
-        <Footer />
       </Router>
     );
   }

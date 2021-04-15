@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 
 import "./styles.scss";
 import { validatePassword } from "../../utils/validationUtils";
+import Footer from "../../common/Footer";
 
 const SigninSchema = Yup.object().shape({
   firstname: Yup.string().required("Required"),
@@ -94,6 +95,7 @@ class RegisterPage extends React.Component {
             </Formik>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

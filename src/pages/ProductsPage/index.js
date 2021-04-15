@@ -1,5 +1,6 @@
 import { inject, observer } from "mobx-react";
 import React from "react";
+import Footer from "../../common/Footer";
 
 import MobileProductsDropdown from "../../components/MobileProductsDropdown";
 import ProductCategoriesAndItems from "../../components/ProductCategoriesAndItems";
@@ -13,6 +14,7 @@ class ProductsPage extends React.Component {
       <div>
         <MobileProductsDropdown productsStore={productsStore} />
         <ProductCategoriesAndItems productsStore={productsStore} />
+        <Footer />
       </div>
     );
   }

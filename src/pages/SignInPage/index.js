@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 
 import "./styles.scss";
 import { validatePassword } from "../../utils/validationUtils";
+import Footer from "../../common/Footer";
 
 const SigninSchema = Yup.object().shape({
   password: Yup.string()
@@ -58,6 +59,7 @@ class SignInPage extends React.Component {
             </Formik>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../../common/Footer";
 import CategoriesSection from "../../components/CategoriesSection";
 import OffersSlick from "../../components/OffersSlick";
 
@@ -8,6 +9,7 @@ class HomePage extends React.Component {
       <div>
         <OffersSlick />
         <CategoriesSection />
+        <Footer />
       </div>
     );
   }
