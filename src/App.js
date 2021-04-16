@@ -1,5 +1,5 @@
 import { Provider } from "mobx-react";
-import React from "react";
+import React, { Suspense } from "react";
 
 import "./App.scss";
 import Routes from "./Routes";
@@ -15,9 +15,11 @@ const cartItemsStore = new CartItemsStore(allDataFetchService);
 class App extends React.Component {
   render() {
     return (
-      <Provider productsStore={productsStore} cartItemsStore={cartItemsStore}>
-        <Routes />
-      </Provider>
+      <Suspense fallback={<span>Loading...</span>}>
+        <Provider productsStore={productsStore} cartItemsStore={cartItemsStore}>
+          <Routes />
+        </Provider>
+      </Suspense>
     );
   }
 }

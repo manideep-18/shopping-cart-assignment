@@ -1,13 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Header from "./common/Header";
-import CartPage from "./pages/CartPage";
-import HomePage from "./pages/HomePage";
-import ProductsPage from "./pages/ProductsPage";
-import RegisterPage from "./pages/RegisterPage";
-import SignInPage from "./pages/SignInPage";
 import { PrivateRoute } from "./utils/PrivateRoute";
+
+const Header = React.lazy(() => import("./common/Header"));
+const CartPage = React.lazy(() => import("./pages/CartPage"));
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const ProductsPage = React.lazy(() => import("./pages/ProductsPage"));
+const RegisterPage = React.lazy(() => import("./pages/RegisterPage"));
+const SignInPage = React.lazy(() => import("./pages/SignInPage"));
 
 class Routes extends React.Component {
   render() {
